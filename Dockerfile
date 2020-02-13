@@ -6,7 +6,7 @@ ARG BRANCH_OR_TAG=release-1.10.0
 RUN env \
   && apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y git cmake make g++ \
+  && apt-get install -y git cmake make g++ lcov \
   && apt-get clean
 
 RUN git clone --depth=1 -b $BRANCH_OR_TAG -q https://github.com/google/googletest.git /googletest

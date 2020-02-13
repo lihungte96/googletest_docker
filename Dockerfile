@@ -2,11 +2,12 @@ FROM alpine:latest
 
 LABEL maintainer "lihungte96"
 
-ARG BRANCH_OR_TAG=master
+ARG BRANCH_OR_TAG=release-1.10.0
 RUN env \
-
   && apk update && apk upgrade \
-  && apk add --no-cache -q -f git cmake make g++
+  && apk add --no-cache -q -f git cmake make g++ \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN git clone --depth=1 -b $BRANCH_OR_TAG -q https://github.com/google/googletest.git /googletest
 RUN mkdir -p /googletest/build
